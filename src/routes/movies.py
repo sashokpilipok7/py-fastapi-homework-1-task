@@ -21,9 +21,8 @@ async def get_movies_list(
     if not total_count or total_count == 0:
         raise HTTPException(status_code=404, detail="No movies found.")
 
-    total_pages = total_count// per_page + 1
+    total_pages = total_count // per_page + 1
     offset = (page - 1) * per_page
-
 
     stmt = select(MovieModel).offset(offset).limit(per_page)
     result = await db.execute(stmt)
